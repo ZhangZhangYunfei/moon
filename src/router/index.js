@@ -2,8 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
+import SignIn from '@/components/SignIn'
+import Console from '@/components/Console'
+import Query from '@/components/Query'
 import Registration from '@/components/Registration'
-
+import Gallary from '@/components/Gallary'
 
 Vue.use(Router)
 
@@ -12,7 +15,14 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      children: [
+        {path: '', component: Gallary},
+        {path: 'console', component: Console},
+        {path: 'query', component: Query},
+        {path: 'registration', component: Registration},
+        {path: 'registration/:examId', component: Registration}
+      ]
     },
     {
       path: '/login',
@@ -20,9 +30,9 @@ export default new Router({
       component: Login
     },
     {
-      path: '/registration',
-      name: 'Registration',
-      component: Registration
+      path: '/signIn',
+      name: 'SignIn',
+      component: SignIn
     }
   ]
 })
